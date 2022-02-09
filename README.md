@@ -1,9 +1,13 @@
 # Admittance Matrix Invertibility Checking for Balanced Power Systems
 This repository provides a proof-of-concept MATLAB R2012b code for certifying the invertibility of a balanced power system admittance matrix in time complexity linear with respect to the system size. The repository includes test cases from the OPF benchmark of [PGLib](https://github.com/power-grid-lib/pglib-opf).
 
-If you ever find this repository useful, please cite the following article:
+The program is based on the results developed in the following article:
 
 D. Turizo and D. Molzahn, "Invertibility Conditions for the Admittance Matrices of Balanced Power Systems," *IEEE Trans. Power Syst.*, submitted. See the [arXiv version](https://arxiv.org/abs/2012.04087).
+
+The code description assumes that you read the article, as it makes multiple references to the theorems developed there.
+
+If you ever find this repository useful, please cite the previous article.
 
 
 # Code Description
@@ -16,7 +20,7 @@ Check invertibility of admittance matrix
 
     flag = check_inv(mpc, tol);
     
-This function attempts to apply Theorem 1 of the paper to certify the invertibility of the admittance matrix of a power system with `N` nodes and `L` lines. `mpc` is a struct all the power system information, in MATPOWER format. `tol` is a tolerance used for numerical comparations (mostly to determine wheter a given values is zero or not). CHECK_INV returns an integer `flag`, which takes one of the following values:
+This function attempts to apply Theorem 1 of the paper to certify the invertibility of the admittance matrix of a power system with `N` nodes and `L` lines. `mpc` is a struct with all the power system information, in [MATPOWER](https://github.com/MATPOWER/matpower) format. `tol` is a tolerance used for numerical comparations (mostly to determine wheter a given values is zero or not). `check_inv` returns an integer `flag`, which takes one of the following values:
 
 * SUCCESS VALUES:
   * `1`: According to Theorem 1 the admittance matrix is invertible.
@@ -33,7 +37,7 @@ A failure value indicates that the invertibility of the admittance matrix cannot
 
 
 ## `test_pglib.m`
-Script for running the program on PGLib-OPF test cases
+Script for running the program on PGLib test cases
 
 ### Syntax
 
@@ -51,7 +55,7 @@ After storing the results in `results.mat`, the script calls the function `print
 
 
 ## `print_results.m`
-Script for running the program on PGLib-OPF test cases
+Print results of PGLib test cases in  console
 
 ### Syntax
 
