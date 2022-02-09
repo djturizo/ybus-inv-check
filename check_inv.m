@@ -3,7 +3,7 @@ function [flag, N, L0] = check_inv(mpc, tol)
 %   flag = check_inv(mpc, tol)
 %   This function attempts to apply Theorem 1 of the paper to certify the
 %   invertibility of the admittance matrix of a power system with N nodes
-%   and L lines. mpc is a struct all the power system information, in
+%   and L lines. mpc is a struct with all the power system information, in
 %   MATPOWER format. tol is a tolerance used for numerical comparations
 %   (mostly to determine wheter a given values is zero or not).
 %   CHECK_INV an integer flag, which takes one of the following values:
