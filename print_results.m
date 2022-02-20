@@ -30,6 +30,14 @@ lines = data.lines(ind_print);
 flags = data.flags(ind_print);
 times = data.times(ind_print);
 
+% Sort test case by number of nodes
+[~, ind] = sort(nodes, 'ascend');
+cases = cases(ind);
+nodes = nodes(ind);
+lines = lines(ind);
+flags = flags(ind);
+times = times(ind);
+
 
 %% Print results as a table
 fprintf(['_________________________________________________' ...
@@ -41,6 +49,7 @@ fprintf(['|Test case                       |N      |L      ' ...
 fprintf(['+--------------------------------+-------+-------' ...
     '+-------+------+-----+--------+\n']);
 sep = '|'; % column separator
+% sep = '&'; % column separator
 kmax = length(cases);
 for k = 1:kmax
     fprintf(sep);
@@ -58,6 +67,7 @@ for k = 1:kmax
     end
     fprintf([sep '%-4d ' sep '%-7.2f ' sep], flags(k), times(k));
     fprintf('\n');
+%     fprintf('\\\\\n\\hline\n');
 end
 fprintf(['+--------------------------------+-------+-------' ...
     '+-------+------+-----+--------+\n']);
