@@ -31,7 +31,8 @@ This function attempts to apply Theorem 1 of the paper to certify the invertibil
   * `-2`: Assumption 2 is violated: some taps ratio are zero.
   * `-4`: Passivity assumption of Theorem 2 is violated: after reduction some admittances were found to have negative conductance.
   * `-5`: Connectivity assumption of Theorem 1 is violated: the network graph is not connected.
-  * `-6`: Some reactive components of the network do not satisfy the conditions of Theorem 3, the algorithm cannot proceed.
+  * `-6`: Some reactive component of the network does not have any of the required topologies of Theorem 3, the algorithm cannot proceed.
+  * `-7`: Some reactive component of the network satisfies the topology of condition 1) of Theorem 3, but none of the conditions are satisfied anyway, so the algorithm cannot proceed.
 
 A failure value indicates that the invertibility of the admittance matrix cannot be asserted. A sucess value indicates that the function sucessfully certified that the matrix is invertible. This function runs in `O(N+L)` time.
 
