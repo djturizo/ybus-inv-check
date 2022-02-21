@@ -28,8 +28,12 @@ function [flag, N, L0] = check_inv(mpc, tol)
 %       Connectivity assumption of Theorem 1 is violated: the network graph
 %       is not connected.
 %       -6:
-%       Some reactive components of the network do not satisfy the 
-%       conditions of Theorem 3, the algorithm cannot proceed.
+%       Some reactive component of the network does not have any of the 
+%       required topologies of Theorem 3, the algorithm cannot proceed.
+%       -6:
+%       Some reactive component of the network satisfies the topology of
+%       condition 1) of Theorem 3, but none of the conditions are satisfied
+%       anyway, so the algorithm cannot proceed.
 %   A failure value indicates that the invertibility of the admittance
 %   matrix cannot be asserted. A sucess value indicates that the function
 %   sucessfully certified that the matrix is invertible.
@@ -211,7 +215,13 @@ for k = 1:c
             [~, new_trees] = get_comps(adj_reac, fail_node);
             cond1_true = ...
                 condition1(new_trees{1}, adj_reac, shunts_reac, tol);
-            if cond1_true, continue; end
+            if cond1_true
+                continue;
+            else
+                % Some equivalent admittance violates condition 1)
+                flag = -7;
+                return;
+            end
         end
     end
     
