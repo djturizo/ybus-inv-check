@@ -30,7 +30,7 @@ function [flag, N, L0] = check_inv(mpc, tol)
 %       -6:
 %       Some reactive component of the network does not have any of the 
 %       required topologies of Theorem 3, the algorithm cannot proceed.
-%       -6:
+%       -7:
 %       Some reactive component of the network satisfies the topology of
 %       condition 1) of Theorem 3, but none of the conditions are satisfied
 %       anyway, so the algorithm cannot proceed.
