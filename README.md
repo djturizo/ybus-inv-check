@@ -3,7 +3,7 @@ This repository provides a proof-of-concept MATLAB R2012b code for certifying th
 
 The program is based on the results developed in the following article:
 
-D. Turizo and D. Molzahn, "Invertibility Conditions for the Admittance Matrices of Balanced Power Systems,", submitted. See the [arXiv version](https://arxiv.org/abs/2012.04087).
+D. Turizo and D. Molzahn, "Invertibility Conditions for the Admittance Matrices of Balanced Power Systems," submitted. See the [arXiv version](https://arxiv.org/abs/2012.04087).
 
 The code description assumes that you read the article, as it makes multiple references to the theorems developed there.
 
