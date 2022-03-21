@@ -22,7 +22,7 @@ Check invertibility of admittance matrix
 
     flag = check_inv(mpc, tol);
     
-This function attempts to apply Theorem 1 of the paper to certify the invertibility of the admittance matrix of a power system with `N` nodes and `L` lines. `mpc` is a struct with all the power system information, in [MATPOWER](https://github.com/MATPOWER/matpower) format. `tol` is a tolerance used for numerical comparations (mostly to determine wheter a given values is zero or not). `check_inv` returns an integer `flag`, which takes one of the following values:
+This function attempts to apply Theorem 1 of the paper to certify the invertibility of the admittance matrix of a power system with `N` nodes and `L` lines. `mpc` is a struct with all the power system information, in [MATPOWER](https://github.com/MATPOWER/matpower) format. `tol` is a tolerance used for numerical comparations (mostly to determine wheter or not a given value is zero). `check_inv` returns an integer `flag`, which takes one of the following values:
 
 * SUCCESS VALUES:
   * `1`: According to Theorem 1 the admittance matrix is invertible.
