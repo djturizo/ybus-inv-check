@@ -7,7 +7,7 @@ D. Turizo and D. Molzahn, "Invertibility Conditions for the Admittance Matrices 
 
 The code description assumes that you read the article, as it makes multiple references to the theorems developed there.
 
-The program does not compute the rank of the admittance matrix when there are no shunts. In order to do so, it is necessary to directly compute the rank of the generalized incidence matrix. Such computation can be done in linear time by means of a thorough implementation using graph theory, but such level of complexity is beyond the scope of this proof-of-concept program. 
+The program does not compute the rank of the admittance matrix when there are no shunts at any bus in the system. In order to do so, it is necessary to directly compute the rank of the generalized incidence matrix. Such computation can be done in linear time by means of a thorough implementation using graph theory, but such level of complexity is beyond the scope of this proof-of-concept program. 
 
 If you ever find this repository useful, please cite the previous article.
 
