@@ -1,15 +1,18 @@
-function [flag, N, L0] = check_inv(mpc, tol)
+function [flag, N, L0, Lr] = check_inv(mpc, tol)
 %CHECK_INV Check invertibility of admittance matrix
 %   flag = check_inv(mpc, tol)
 %   This function attempts to apply Theorem 1 of the paper to certify the
 %   invertibility of the admittance matrix of a power system with N nodes
-%   and L lines. mpc is a struct with all the power system information, in
-%   MATPOWER format. tol is a tolerance used for numerical comparations
-%   (mostly to determine wheter a given values is zero or not).
-%   CHECK_INV an integer flag, which takes one of the following values:
+%   and L0 lines, Lr of which are purely reatice. mpc is a struct with all 
+%   the power system information, in MATPOWER format. tol is a tolerance 
+%   used for numerical comparations (mostly to determine wheter a given 
+%   values is zero or not). CHECK_INV an integer flag, which takes one of 
+%   the following values:
 %   SUCCESS VALUES:
 %       1:
 %       According to Theorem 1 the admittance matrix is invertible.
+%       2:
+%       According to Theorem 1 the admittance matrix is singular.
 %   CORNER-CASE VALUES:
 %       0:
 %       There are no shunts, so according to Theorem 1 the rank of the
@@ -72,6 +75,9 @@ end
 % lines=[ from_bus  to_bus  series_admittance  complex_taps_ratio];
 lines = [lines(:,1:2) 1./(lines(:,3)+1i.*lines(:,4)) ...
     lines(:,6).*exp((1i.*pi./180).*lines(:,7))];
+
+% Count the number of purely reactive branches
+Lr = sum(abs(real(lines(:,3))) <= tol);
 
 % Check Assumption 2
 if any(abs(lines(:,4)) <= tol)
@@ -149,7 +155,7 @@ adj_list = bi_adj_list(lines, N);
 
 
 %% Find connected components using BFS, O(N+L)
-comp_nodes = get_comps(adj_list, 1); % Run BFS, O(N+L)
+[comp_nodes, trees] = get_comps(adj_list, 1); % Run BFS, O(N+L)
 
 % Check Connectivity
 if length(comp_nodes) ~= 1
@@ -237,7 +243,17 @@ if any(abs(shunts) > tol)
     % If there are shunts, then the admittance matrix is invertible
     flag = 1;
 else
-    flag = 0;
+    % There are no shunts
+    if ~isempty(trees{1})
+        % The network is radial, so the generalized incidence matrix has 
+        % N-1 rows and thus the admittance matrix has rank N-1. In
+        % particular, the admittance matrix is singular.
+        flag = 2;
+    else
+        % The network is meshed, in this case the code does not decide
+        % whether the admittance matrix is invertible or not.
+        flag = 0;
+    end
 end
 
 % % Compute admittance matrix
