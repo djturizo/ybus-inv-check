@@ -37,7 +37,7 @@ This function attempts to apply Theorem 1 of the paper to certify the invertibil
   * `-6`: Some reactive component of the network does not have any of the required topologies of Theorem 3, the algorithm cannot proceed.
   * `-7`: Some reactive component of the network satisfies the topology of condition 1) of Theorem 3, but none of the conditions are satisfied anyway, so the algorithm cannot proceed.
 
-A failure value indicates that the invertibility of the admittance matrix cannot be asserted. A sucess value indicates that the function sucessfully certified that the matrix is invertible. This function runs in `O(N+L)` time.
+A failure value indicates that the invertibility of the admittance matrix cannot be asserted. A sucess value indicates that the function sucessfully certified that the matrix is invertible. This function runs in `O(N+L0)` time.
 
 
 ## `test_pglib.m`
