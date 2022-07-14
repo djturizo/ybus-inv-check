@@ -40,7 +40,7 @@ function [flag, N, L0, Lr] = check_inv(mpc, tol)
 %   A failure value indicates that the invertibility of the admittance
 %   matrix cannot be asserted. A sucess value indicates that the function
 %   sucessfully certified that the matrix is invertible.
-%   This function runs in O(N+L) time.
+%   This function runs in O(N+L0) time.
 
 
 %% Extract data from MATPOWER struct, O(N+L)
