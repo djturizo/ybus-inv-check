@@ -7,7 +7,7 @@ function [comp_nodes, trees] = get_comps(adj_list, source)
 %   connected to node i. source is an integer indicating the starting node
 %   of the BFS algorithm. If there are multiple connected components, new
 %   sources will be tried in increasing order.
-%   GET_COMPS return a cell array comp_nodes, where each entry containts a 
+%   GET_COMPS returns a cell array comp_nodes, where each entry containts a 
 %   vector with the nodes of a single connected component. Isolated nodes 
 %   are not considered as connected components, and are not included in 
 %   comp_nodes. 

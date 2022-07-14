@@ -6,8 +6,8 @@ function [flag, N, L0, Lr] = check_inv(mpc, tol)
 %   and L0 lines, Lr of which are purely reatice. mpc is a struct with all 
 %   the power system information, in MATPOWER format. tol is a tolerance 
 %   used for numerical comparations (mostly to determine wheter a given 
-%   values is zero or not). CHECK_INV an integer flag, which takes one of 
-%   the following values:
+%   values is zero or not). CHECK_INV returns an integer flag, which takes 
+%   one of the following values:
 %   SUCCESS VALUES:
 %       1:
 %       According to Theorem 1 the admittance matrix is invertible.
